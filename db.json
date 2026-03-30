@@ -1,0 +1,1080 @@
+{
+  "leaderboards": [
+    {
+      "id": "1",
+      "title": "Spring Tournament",
+      "description": "Seasonal leaderboard",
+      "startDate": "2025-08-12",
+      "endDate": "2026-04-01",
+      "status": "active",
+      "scoringType": "points",
+      "maxParticipants": 100,
+      "createdAt": "2025-08-12",
+      "updatedAt": "2026-03-01",
+      "prizes": [
+        {
+          "id": "1",
+          "rank": 1,
+          "name": "Gold Prize",
+          "type": "coins",
+          "amount": 1000,
+          "imageUrl": "https://framerusercontent.com/images/oaSI2TKrLp2ZRsWhatqJVMG1lmY.png"
+        },
+        {
+          "id": "2",
+          "rank": 2,
+          "name": "Silver Prize",
+          "type": "coins",
+          "amount": 500,
+          "imageUrl": ""
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Fall Tournament",
+      "description": "Seasonal Autumn leaderboard",
+      "startDate": "2026-03-01",
+      "endDate": "2026-04-01",
+      "status": "completed",
+      "scoringType": "points",
+      "maxParticipants": 100,
+      "createdAt": "2026-03-01",
+      "updatedAt": "2026-03-01",
+      "prizes": [
+        {
+          "id": "1",
+          "rank": 1,
+          "name": "Gold Prize",
+          "type": "coins",
+          "amount": 1000,
+          "imageUrl": ""
+        },
+        {
+          "id": "7d4f947a-62a7-49cb-acdc-d61f5a5e1a73",
+          "rank": 2,
+          "name": "sfdsdf",
+          "type": "coins",
+          "amount": "20",
+          "imageUrl": ""
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Summer Showdown",
+      "description": "Hot summer leaderboard",
+      "startDate": "2025-06-01",
+      "endDate": "2025-08-01",
+      "status": "completed",
+      "scoringType": "points",
+      "maxParticipants": 120,
+      "createdAt": "2025-05-20",
+      "updatedAt": "2025-08-02",
+      "prizes": [
+        {
+          "id": "1",
+          "rank": 1,
+          "name": "Gold Trophy",
+          "type": "coins",
+          "amount": 1500,
+          "imageUrl": ""
+        },
+        {
+          "id": "2",
+          "rank": 2,
+          "name": "Silver Trophy",
+          "type": "coins",
+          "amount": 800,
+          "imageUrl": ""
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Winter Cup",
+      "description": "End of year leaderboard",
+      "startDate": "2025-12-01",
+      "endDate": "2026-02-28",
+      "status": "draft",
+      "scoringType": "points",
+      "maxParticipants": 90,
+      "createdAt": "2025-11-25",
+      "updatedAt": "2026-02-01",
+      "prizes": [
+        {
+          "id": "1",
+          "rank": 1,
+          "name": "Gold Medal",
+          "type": "coins",
+          "amount": 1200,
+          "imageUrl": ""
+        },
+        {
+          "id": "2",
+          "rank": 2,
+          "name": "Silver Medal",
+          "type": "coins",
+          "amount": 600,
+          "imageUrl": ""
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "title": "Autumn Challenge",
+      "description": "Fall competition leaderboard",
+      "startDate": "2025-09-01",
+      "endDate": "2025-11-30",
+      "status": "completed",
+      "scoringType": "points",
+      "maxParticipants": 110,
+      "createdAt": "2025-08-25",
+      "updatedAt": "2025-12-01",
+      "prizes": [
+        {
+          "id": "1",
+          "rank": 1,
+          "name": "Gold Cup",
+          "type": "coins",
+          "amount": 1300,
+          "imageUrl": ""
+        },
+        {
+          "id": "2",
+          "rank": 2,
+          "name": "Silver Cup",
+          "type": "coins",
+          "amount": 700,
+          "imageUrl": ""
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "title": "Champions League",
+      "description": "Top ranking players",
+      "startDate": "2026-01-01",
+      "endDate": "2026-03-31",
+      "status": "active",
+      "scoringType": "points",
+      "maxParticipants": 150,
+      "createdAt": "2025-12-15",
+      "updatedAt": "2026-03-01",
+      "prizes": [
+        {
+          "id": "1",
+          "rank": 1,
+          "name": "Diamond Trophy",
+          "type": "coins",
+          "amount": 2000,
+          "imageUrl": ""
+        },
+        {
+          "id": "2",
+          "rank": 2,
+          "name": "Platinum Trophy",
+          "type": "coins",
+          "amount": 1000,
+          "imageUrl": ""
+        }
+      ]
+    },
+    {
+      "id": "7",
+      "title": "Legends Cup",
+      "description": "Leaderboard for top legends",
+      "startDate": "2025-04-01",
+      "endDate": "2025-06-30",
+      "status": "completed",
+      "scoringType": "points",
+      "maxParticipants": 95,
+      "createdAt": "2025-03-25",
+      "updatedAt": "2025-07-01",
+      "prizes": [
+        {
+          "id": "1",
+          "rank": 1,
+          "name": "Gold Medal",
+          "type": "coins",
+          "amount": 1400,
+          "imageUrl": ""
+        },
+        {
+          "id": "2",
+          "rank": 2,
+          "name": "Silver Medal",
+          "type": "coins",
+          "amount": 750,
+          "imageUrl": ""
+        }
+      ]
+    },
+    {
+      "id": "8",
+      "title": "Spring Cup",
+      "description": "Leaderboard for spring season",
+      "startDate": "2026-03-01",
+      "endDate": "2026-05-31",
+      "status": "active",
+      "scoringType": "points",
+      "maxParticipants": 120,
+      "createdAt": "2026-02-20",
+      "updatedAt": "2026-03-01",
+      "prizes": [
+        {
+          "id": "1",
+          "rank": 1,
+          "name": "Gold Medal",
+          "type": "coins",
+          "amount": 1500,
+          "imageUrl": ""
+        },
+        {
+          "id": "2",
+          "rank": 2,
+          "name": "Silver Medal",
+          "type": "coins",
+          "amount": 800,
+          "imageUrl": ""
+        }
+      ]
+    },
+    {
+      "id": "9",
+      "title": "Summer Cup",
+      "description": "Hot summer leaderboard",
+      "startDate": "2026-06-01",
+      "endDate": "2026-08-31",
+      "status": "active",
+      "scoringType": "points",
+      "maxParticipants": 130,
+      "createdAt": "2026-05-20",
+      "updatedAt": "2026-06-01",
+      "prizes": [
+        {
+          "id": "1",
+          "rank": 1,
+          "name": "Gold Trophy",
+          "type": "coins",
+          "amount": 1600,
+          "imageUrl": ""
+        },
+        {
+          "id": "2",
+          "rank": 2,
+          "name": "Silver Trophy",
+          "type": "coins",
+          "amount": 900,
+          "imageUrl": ""
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "title": "Autumn Cup",
+      "description": "Fall leaderboard",
+      "startDate": "2025-09-01",
+      "endDate": "2025-11-30",
+      "status": "completed",
+      "scoringType": "points",
+      "maxParticipants": 110,
+      "createdAt": "2025-08-25",
+      "updatedAt": "2025-12-01",
+      "prizes": [
+        {
+          "id": "1",
+          "rank": 1,
+          "name": "Gold Cup",
+          "type": "coins",
+          "amount": 1300,
+          "imageUrl": ""
+        },
+        {
+          "id": "2",
+          "rank": 2,
+          "name": "Silver Cup",
+          "type": "coins",
+          "amount": 700,
+          "imageUrl": ""
+        }
+      ]
+    },
+    {
+      "id": "11",
+      "title": "Winter Showdown",
+      "description": "Year-end leaderboard",
+      "startDate": "2025-12-01",
+      "endDate": "2026-02-28",
+      "status": "active",
+      "scoringType": "points",
+      "maxParticipants": 100,
+      "createdAt": "2025-11-20",
+      "updatedAt": "2026-02-01",
+      "prizes": [
+        {
+          "id": "1",
+          "rank": 1,
+          "name": "Gold Medal",
+          "type": "coins",
+          "amount": 1500,
+          "imageUrl": ""
+        },
+        {
+          "id": "2",
+          "rank": 2,
+          "name": "Silver Medal",
+          "type": "coins",
+          "amount": 800,
+          "imageUrl": ""
+        }
+      ]
+    },
+    {
+      "id": "12",
+      "title": "Champions Cup",
+      "description": "Leaderboard for champions",
+      "startDate": "2026-01-01",
+      "endDate": "2026-03-31",
+      "status": "active",
+      "scoringType": "points",
+      "maxParticipants": 150,
+      "createdAt": "2025-12-15",
+      "updatedAt": "2026-03-01",
+      "prizes": [
+        {
+          "id": "1",
+          "rank": 1,
+          "name": "Diamond Trophy",
+          "type": "coins",
+          "amount": 2000,
+          "imageUrl": ""
+        },
+        {
+          "id": "2",
+          "rank": 2,
+          "name": "Platinum Trophy",
+          "type": "coins",
+          "amount": 1000,
+          "imageUrl": ""
+        }
+      ]
+    },
+    {
+      "id": "13",
+      "title": "qewqew",
+      "description": "qweqewwqe",
+      "startDate": "2026-03-01",
+      "endDate": "2026-04-05",
+      "status": "draft",
+      "scoringType": "wagered",
+      "maxParticipants": "12",
+      "prizes": [
+        {
+          "id": "91d01008-fe24-4516-b177-bb4309f7ce9c",
+          "rank": 1,
+          "name": "test123",
+          "type": "freeSpin",
+          "amount": "23",
+          "imageUrl": ""
+        }
+      ],
+      "createdAt": "2026-03-28",
+      "updatedAt": "2026-03-28"
+    },
+    {
+      "id": "14",
+      "title": "adsads",
+      "description": "qweqwew",
+      "startDate": "2026-03-27",
+      "endDate": "2026-04-18",
+      "status": "completed",
+      "scoringType": "wins",
+      "maxParticipants": "13",
+      "prizes": [
+        {
+          "id": "fa2b337f-38f1-4927-baf8-56b9185c356c",
+          "rank": 1,
+          "name": "asdasddasads",
+          "type": "bonus",
+          "amount": "234",
+          "imageUrl": ""
+        }
+      ],
+      "createdAt": "2026-03-28",
+      "updatedAt": "2026-03-28"
+    },
+    {
+      "id": "15",
+      "title": "zxc",
+      "description": "",
+      "startDate": "2026-03-01",
+      "endDate": "2026-04-11",
+      "status": "draft",
+      "maxParticipants": "213",
+      "prizes": [
+        {
+          "id": "8a88ff33-5fde-4b31-be9d-8ee34336f075",
+          "rank": 1,
+          "name": "sdf",
+          "type": "coins",
+          "amount": "23",
+          "imageUrl": ""
+        }
+      ],
+      "createdAt": "2026-03-29",
+      "updatedAt": "2026-03-29"
+    }
+  ],
+  "raffles": [
+    {
+      "id": "1",
+      "name": "Raffle 1",
+      "description": "Raffle 1 description",
+      "startDate": "2025-08-12",
+      "endDate": "2026-04-01",
+      "drawDate": "2026-04-05",
+      "status": "active",
+      "ticketPrice": 100,
+      "maxTicketsPerUser": 10,
+      "totalTicketLimit": 1000,
+      "createdAt": "2025-08-12",
+      "updatedAt": "2026-03-01",
+      "prizes": [
+        {
+          "id": "1",
+          "name": "Gold Prize",
+          "type": "coins",
+          "amount": 1000,
+          "quantity": 1,
+          "imageUrl": "https://framerusercontent.com/images/oaSI2TKrLp2ZRsWhatqJVMG1lmY.png"
+        },
+        {
+          "id": "2",
+          "name": "Silver Prize",
+          "type": "coins",
+          "amount": 500,
+          "quantity": 20,
+          "imageUrl": ""
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Raffle 2",
+      "description": "Raffle 2 description",
+      "startDate": "2026-03-01",
+      "endDate": "2026-03-31",
+      "drawDate": "2026-04-10",
+      "status": "drawn",
+      "ticketPrice": 200,
+      "maxTicketsPerUser": 20,
+      "totalTicketLimit": 2000,
+      "createdAt": "2026-03-01",
+      "updatedAt": "2026-03-01",
+      "prizes": [
+        {
+          "id": "1",
+          "name": "Gold Prize",
+          "type": "coins",
+          "amount": 1000,
+          "quantity": 1,
+          "imageUrl": ""
+        },
+        {
+          "id": "2",
+          "name": "Silver Prize",
+          "type": "coins",
+          "amount": 500,
+          "quantity": 20,
+          "imageUrl": ""
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "Raffle 3",
+      "description": "Raffle 3 description",
+      "startDate": "2026-04-01",
+      "endDate": "2026-04-30",
+      "drawDate": "2026-05-05",
+      "status": "active",
+      "ticketPrice": 300,
+      "maxTicketsPerUser": 30,
+      "totalTicketLimit": null,
+      "createdAt": "2026-04-01",
+      "updatedAt": "2026-04-01",
+      "prizes": [
+        {
+          "id": "1",
+          "name": "Gold Prize 3",
+          "type": "coins",
+          "amount": 1000,
+          "quantity": 1,
+          "imageUrl": ""
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "name": "Raffle 4",
+      "description": "Raffle 4 description",
+      "startDate": "2026-05-01",
+      "endDate": "2026-05-31",
+      "drawDate": "2026-06-05",
+      "status": "drawn",
+      "ticketPrice": 400,
+      "maxTicketsPerUser": 40,
+      "totalTicketLimit": 4000,
+      "createdAt": "2026-05-01",
+      "updatedAt": "2026-05-01",
+      "prizes": [
+        {
+          "id": "1",
+          "name": "Gold Prize 4",
+          "type": "coins",
+          "amount": 1000,
+          "quantity": 1,
+          "imageUrl": ""
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "name": "Raffle 5",
+      "description": "Raffle 5 description",
+      "startDate": "2026-06-01",
+      "endDate": "2026-06-31",
+      "drawDate": "2026-07-05",
+      "status": "draft",
+      "ticketPrice": 500,
+      "maxTicketsPerUser": 50,
+      "totalTicketLimit": 5000,
+      "createdAt": "2026-06-01",
+      "updatedAt": "2026-06-01",
+      "prizes": [
+        {
+          "id": "1",
+          "name": "Gold Prize 5",
+          "type": "coins",
+          "amount": 1000,
+          "quantity": 1,
+          "imageUrl": ""
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "name": "Raffle 6",
+      "description": "Raffle 6 description",
+      "startDate": "2026-07-01",
+      "endDate": "2026-07-31",
+      "drawDate": "2026-08-05",
+      "status": "active",
+      "ticketPrice": 600,
+      "maxTicketsPerUser": 60,
+      "totalTicketLimit": 6000,
+      "createdAt": "2026-07-01",
+      "updatedAt": "2026-07-01",
+      "prizes": [
+        {
+          "id": "1",
+          "name": "Gold Prize 6",
+          "type": "coins",
+          "amount": 1000,
+          "quantity": 1,
+          "imageUrl": ""
+        }
+      ]
+    },
+    {
+      "id": "7",
+      "name": "Raffle 7",
+      "description": "Raffle 7 description",
+      "startDate": "2026-08-01",
+      "endDate": "2026-08-31",
+      "drawDate": "2026-09-05",
+      "status": "active",
+      "ticketPrice": 700,
+      "maxTicketsPerUser": 70,
+      "totalTicketLimit": 7000,
+      "createdAt": "2026-08-01",
+      "updatedAt": "2026-08-01",
+      "prizes": [
+        {
+          "id": "1",
+          "name": "Gold Prize 7",
+          "type": "coins",
+          "amount": 1000,
+          "quantity": 1,
+          "imageUrl": ""
+        }
+      ]
+    },
+    {
+      "id": "8",
+      "name": "Raffle 8",
+      "description": "Raffle 8 description",
+      "startDate": "2026-09-01",
+      "endDate": "2026-09-31",
+      "drawDate": "2026-10-05",
+      "status": "active",
+      "ticketPrice": 800,
+      "maxTicketsPerUser": 80,
+      "totalTicketLimit": 8000,
+      "createdAt": "2026-09-01",
+      "updatedAt": "2026-09-01",
+      "prizes": [
+        {
+          "id": "1",
+          "name": "Gold Prize 8",
+          "type": "coins",
+          "amount": 1000,
+          "quantity": 1,
+          "imageUrl": ""
+        }
+      ]
+    },
+    {
+      "id": "9",
+      "name": "Raffle 9",
+      "description": "Raffle 9 description",
+      "startDate": "2026-10-01",
+      "endDate": "2026-10-31",
+      "drawDate": "2026-11-05",
+      "status": "active",
+      "ticketPrice": 900,
+      "maxTicketsPerUser": 90,
+      "totalTicketLimit": 9000,
+      "createdAt": "2026-10-01",
+      "updatedAt": "2026-10-01",
+      "prizes": [
+        {
+          "id": "1",
+          "name": "Gold Prize 9",
+          "type": "coins",
+          "amount": 1000,
+          "quantity": 1,
+          "imageUrl": ""
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "name": "Raffle 10",
+      "description": "Raffle 10 description",
+      "startDate": "2026-11-01",
+      "endDate": "2026-11-31",
+      "drawDate": "2026-12-05",
+      "status": "active",
+      "ticketPrice": 1000,
+      "maxTicketsPerUser": 100,
+      "totalTicketLimit": 10000,
+      "createdAt": "2026-11-01",
+      "updatedAt": "2026-11-01",
+      "prizes": [
+        {
+          "id": "1",
+          "name": "Gold Prize 10",
+          "type": "coins",
+          "amount": 1000,
+          "quantity": 1,
+          "imageUrl": ""
+        }
+      ]
+    },
+    {
+      "id": "11",
+      "name": "3sd",
+      "description": "",
+      "startDate": "2026-03-22",
+      "endDate": "2026-03-28",
+      "ticketPrice": "1",
+      "prizes": [
+        {
+          "id": "2",
+          "quantity": "2",
+          "name": "test",
+          "type": "coins",
+          "imageUrl": ""
+        }
+      ],
+      "createdAt": "2026-03-29",
+      "updatedAt": "2026-03-29",
+      "drawDate": "2026-04-03",
+      "maxTicketsPerUser": "3"
+    }
+  ],
+  "wheels": [
+    {
+      "id": "1",
+      "name": "Wheel 1",
+      "description": "Wheel 1 descriptionxccx",
+      "status": "active",
+      "segments": [
+        {
+          "id": "1",
+          "label": "Segment 1",
+          "color": "#F54927",
+          "weight": "20",
+          "prizeType": "coins",
+          "prizeAmount": 100,
+          "imageUrl": ""
+        },
+        {
+          "id": "2",
+          "label": "fdfd",
+          "color": "#e2bda9",
+          "weight": "80",
+          "prizeType": "nothing",
+          "prizeAmount": 0,
+          "imageUrl": ""
+        }
+      ],
+      "maxSpinsPerUser": 10,
+      "spinCost": 100,
+      "backgroundColor": "#F54927",
+      "borderColor": "#F54927",
+      "createdAt": "2026-03-29",
+      "updatedAt": "2026-03-29"
+    },
+    {
+      "id": "2",
+      "name": "Wheel 2",
+      "description": "Wheel 2 description",
+      "status": "draft",
+      "segments": [
+        {
+          "id": "1",
+          "label": "Segment 2",
+          "color": "#000000",
+          "weight": "50",
+          "prizeType": "coins",
+          "prizeAmount": 100,
+          "imageUrl": ""
+        },
+        {
+          "id": "2",
+          "label": "dgrdf",
+          "color": "#42b3a6",
+          "weight": "50",
+          "prizeType": "nothing",
+          "prizeAmount": 0,
+          "imageUrl": ""
+        }
+      ],
+      "maxSpinsPerUser": 10,
+      "spinCost": 100,
+      "backgroundColor": "#000000",
+      "borderColor": "#000000",
+      "createdAt": "2026-03-29",
+      "updatedAt": "2026-03-29"
+    },
+    {
+      "id": "3",
+      "name": "Wheel 3",
+      "description": "Wheel 3 description",
+      "status": "draft",
+      "segments": [
+        {
+          "id": "1",
+          "label": "Segment 3",
+          "color": "#FF0000",
+          "weight": 1,
+          "prizeType": "coins",
+          "prizeAmount": 100,
+          "imageUrl": ""
+        },
+        {
+          "id": "2",
+          "label": "test2",
+          "color": "#86cbb7",
+          "weight": "99",
+          "prizeType": "freeSpin",
+          "prizeAmount": "10",
+          "imageUrl": ""
+        }
+      ],
+      "maxSpinsPerUser": "100",
+      "spinCost": 100,
+      "backgroundColor": "#FF0000",
+      "borderColor": "#FF0000",
+      "createdAt": "2026-03-29",
+      "updatedAt": "2026-03-29"
+    },
+    {
+      "id": "4",
+      "name": "Wheel 4",
+      "description": "Wheel 4 description",
+      "status": "inactive",
+      "segments": [
+        {
+          "id": "1",
+          "label": "Segment 4",
+          "color": "#00FF00",
+          "weight": "50",
+          "prizeType": "coins",
+          "prizeAmount": 100,
+          "imageUrl": ""
+        },
+        {
+          "id": "2",
+          "label": "grdf",
+          "color": "#f8d5ae",
+          "weight": "50",
+          "prizeType": "nothing",
+          "prizeAmount": 0,
+          "imageUrl": ""
+        }
+      ],
+      "maxSpinsPerUser": 10,
+      "spinCost": 100,
+      "backgroundColor": "#00FF00",
+      "borderColor": "#00FF00",
+      "createdAt": "2026-03-29",
+      "updatedAt": "2026-03-29"
+    },
+    {
+      "id": "5",
+      "name": "Wheel 5",
+      "description": "Wheel 5 description",
+      "status": "active",
+      "segments": [
+        {
+          "id": "1",
+          "label": "Segment 5",
+          "color": "#0000FF",
+          "weight": 1,
+          "prizeType": "coins",
+          "prizeAmount": 100,
+          "imageUrl": ""
+        },
+        {
+          "id": "2",
+          "label": "fdfd",
+          "color": "#e2bda9",
+          "weight": "80",
+          "prizeType": "nothing",
+          "prizeAmount": 0,
+          "imageUrl": ""
+        }
+      ],
+      "maxSpinsPerUser": 10,
+      "spinCost": 100,
+      "backgroundColor": "#0000FF",
+      "borderColor": "#0000FF",
+      "createdAt": "2026-03-29",
+      "updatedAt": "2026-03-29"
+    },
+    {
+      "id": "6",
+      "name": "Wheel 6",
+      "description": "Wheel 6 description",
+      "status": "active",
+      "segments": [
+        {
+          "id": "1",
+          "label": "Segment 6",
+          "color": "#800080",
+          "weight": 1,
+          "prizeType": "coins",
+          "prizeAmount": 100,
+          "imageUrl": ""
+        },
+        {
+          "id": "2",
+          "label": "fdfd",
+          "color": "#e2bda9",
+          "weight": "80",
+          "prizeType": "nothing",
+          "prizeAmount": 0,
+          "imageUrl": ""
+        }
+      ],
+      "maxSpinsPerUser": 10,
+      "spinCost": 100,
+      "backgroundColor": "#800080",
+      "borderColor": "#800080",
+      "createdAt": "2026-03-29",
+      "updatedAt": "2026-03-29"
+    },
+    {
+      "id": "7",
+      "name": "Wheel 7",
+      "description": "Wheel 7 description",
+      "status": "active",
+      "segments": [
+        {
+          "id": "1",
+          "label": "Segment 7",
+          "color": "#FFA500",
+          "weight": 1,
+          "prizeType": "coins",
+          "prizeAmount": 100,
+          "imageUrl": ""
+        },
+        {
+          "id": "2",
+          "label": "fdfd",
+          "color": "#e2bda9",
+          "weight": "80",
+          "prizeType": "nothing",
+          "prizeAmount": 0,
+          "imageUrl": ""
+        }
+      ],
+      "maxSpinsPerUser": 10,
+      "spinCost": 100,
+      "backgroundColor": "#FFA500",
+      "borderColor": "#FFA500",
+      "createdAt": "2026-03-29",
+      "updatedAt": "2026-03-29"
+    },
+    {
+      "id": "8",
+      "name": "Wheel 8",
+      "description": "Wheel 8 description",
+      "status": "active",
+      "segments": [
+        {
+          "id": "1",
+          "label": "Segment 8",
+          "color": "#FFFF00",
+          "weight": 1,
+          "prizeType": "coins",
+          "prizeAmount": 100,
+          "imageUrl": ""
+        },
+        {
+          "id": "2",
+          "label": "fdfd",
+          "color": "#e2bda9",
+          "weight": "80",
+          "prizeType": "nothing",
+          "prizeAmount": 0,
+          "imageUrl": ""
+        }
+      ],
+      "maxSpinsPerUser": 10,
+      "spinCost": 100,
+      "backgroundColor": "#FFFF00",
+      "borderColor": "#FFFF00",
+      "createdAt": "2026-03-29",
+      "updatedAt": "2026-03-29"
+    },
+    {
+      "id": "9",
+      "name": "Wheel 9",
+      "description": "Wheel 9 description",
+      "status": "active",
+      "segments": [
+        {
+          "id": "1",
+          "label": "Segment 9",
+          "color": "#FFC0CB",
+          "weight": 1,
+          "prizeType": "coins",
+          "prizeAmount": 100,
+          "imageUrl": ""
+        },
+        {
+          "id": "2",
+          "label": "fdfd",
+          "color": "#e2bda9",
+          "weight": "80",
+          "prizeType": "nothing",
+          "prizeAmount": 0,
+          "imageUrl": ""
+        }
+      ],
+      "maxSpinsPerUser": 10,
+      "spinCost": 100,
+      "backgroundColor": "#FFC0CB",
+      "borderColor": "#FFC0CB",
+      "createdAt": "2026-03-29",
+      "updatedAt": "2026-03-29"
+    },
+    {
+      "id": "10",
+      "name": "Wheel 10",
+      "description": "Wheel 10 description",
+      "status": "active",
+      "segments": [
+        {
+          "id": "1",
+          "label": "Segment 10",
+          "color": "#808080",
+          "weight": 1,
+          "prizeType": "coins",
+          "prizeAmount": 100,
+          "imageUrl": ""
+        },
+        {
+          "id": "2",
+          "label": "fdfd",
+          "color": "#e2bda9",
+          "weight": "80",
+          "prizeType": "nothing",
+          "prizeAmount": 0,
+          "imageUrl": ""
+        },
+        {
+          "id": "3",
+          "label": "fdfd",
+          "color": "#e2bda9",
+          "weight": "80",
+          "prizeType": "nothing",
+          "prizeAmount": 0,
+          "imageUrl": ""
+        }
+      ],
+      "maxSpinsPerUser": 10,
+      "spinCost": 100,
+      "backgroundColor": "#808080",
+      "borderColor": "#808080",
+      "createdAt": "2026-03-29",
+      "updatedAt": "2026-03-29"
+    },
+    {
+      "name": "sad",
+      "description": "",
+      "status": "active",
+      "segments": [
+        {
+          "id": "1",
+          "label": "erw",
+          "color": "#dbc12a",
+          "weight": "99",
+          "prizeType": "nothing",
+          "prizeAmount": 0,
+          "imageUrl": ""
+        },
+        {
+          "id": "2",
+          "label": "ds",
+          "color": "#c745af",
+          "weight": 1,
+          "prizeType": "freeSpin",
+          "prizeAmount": 0,
+          "imageUrl": ""
+        },
+        {
+          "id": "2",
+          "label": "fdfd",
+          "color": "#e2bda9",
+          "weight": "80",
+          "prizeType": "nothing",
+          "prizeAmount": 0,
+          "imageUrl": ""
+        }
+      ],
+      "maxSpinsPerUser": "342",
+      "spinCost": "243",
+      "backgroundColor": "#ffffff",
+      "borderColor": "#000000",
+      "id": "11",
+      "createdAt": "2026-03-29",
+      "updatedAt": "2026-03-29"
+    }
+  ]
+}
