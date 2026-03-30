@@ -160,12 +160,14 @@ Prerequisites:
 
 1. Install dependencies:
    - `npm install`
-2. Start the mock API (json-server) in a terminal:
+2. Install dependencies:
+   - `cp .env.example .env`
+3. Start the mock API (json-server) in a terminal:
    - `npm run server`
    - It serves data from `db.json` on `http://localhost:3001` (controlled by `VITE_API_BASE_URL`).
-3. Start the frontend (Vite) in another terminal:
+4. Start the frontend (Vite) in another terminal:
    - `npm run dev`
-4. Open the app in your browser (by default it is `http://localhost:5173`).
+5. Open the app in your browser (by default it is `http://localhost:5173`).
 
 Notes:
 
