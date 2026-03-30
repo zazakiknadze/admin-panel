@@ -1,4 +1,4 @@
-import { useForm, Controller, useFieldArray } from "react-hook-form";
+import { useForm, Controller, useFieldArray } from 'react-hook-form';
 import {
   TextField,
   Select,
@@ -15,31 +15,31 @@ import {
   Divider,
   IconButton,
   Stack,
-} from "@mui/material";
+} from '@mui/material';
 import {
   Delete as DeleteIcon,
   Add as AddIcon,
   EmojiEvents as TrophyIcon,
   Settings as SettingsIcon,
   ArrowBack as BackIcon,
-} from "@mui/icons-material";
+} from '@mui/icons-material';
 import {
   Leaderboard,
   LeaderboardPrizeType,
   LeaderboardScoringType,
   LeaderboardStatus,
-} from "@/interfaces/leaderboard";
-import { useEffect } from "react";
-import { FormMode } from "@/interfaces/shared";
-import { useLeaderboardDetails } from "@/pages/leaderboard/hooks/useLeaderboardDetails";
-import { useNavigate, useParams } from "react-router-dom";
-import StateHandler from "@/components/stateHandler/stateHandler";
+} from '@/interfaces/leaderboard';
+import { useEffect, useState } from 'react';
+import { FormMode } from '@/interfaces/shared';
+import { useLeaderboardDetails } from '@/pages/leaderboard/hooks/useLeaderboardDetails';
+import { useNavigate, useParams } from 'react-router-dom';
+import StateHandler from '@/components/stateHandler/stateHandler';
 import {
   useNewRowMutation,
   useUpdateRowMutation,
-} from "@/pages/leaderboard/hooks/useRowMutation";
-import { leaderboardSchema } from "@/pages/leaderboard/validations/validationSchema";
-import { useUnsavedChanges } from "@/hooks/useUnsavedChanges";
+} from '@/pages/leaderboard/hooks/useRowMutation';
+import { leaderboardSchema } from '@/pages/leaderboard/validations/validationSchema';
+import { useUnsavedChanges } from '@/hooks/useUnsavedChanges';
 
 interface Props {
   mode: FormMode;
@@ -66,25 +66,27 @@ export const LeaderboardForm = ({ mode }: Props) => {
     clearErrors,
     formState: { errors, isDirty },
   } = useForm<Leaderboard>({
-    mode: "onChange",
+    mode: 'onChange',
     defaultValues: {
-      id: "",
-      title: "",
-      description: "",
-      startDate: "",
-      endDate: "",
+      id: '',
+      title: '',
+      description: '',
+      startDate: '',
+      endDate: '',
       status: undefined,
       scoringType: undefined,
       maxParticipants: undefined,
       prizes: [],
-      createdAt: "",
-      updatedAt: "",
+      createdAt: '',
+      updatedAt: '',
     },
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const { fields, append, remove } = useFieldArray({
     control,
-    name: "prizes",
+    name: 'prizes',
   });
 
   const scoringOptions = Object.values(LeaderboardScoringType);
@@ -92,14 +94,14 @@ export const LeaderboardForm = ({ mode }: Props) => {
 
   const handleFormSubmit = async (formData: Leaderboard) => {
     clearErrors();
-
+    setIsSubmitting(true);
     const result = leaderboardSchema.safeParse(formData);
 
     if (!result.success) {
       result.error.issues.forEach((issue) => {
-        const path = issue.path.join(".");
+        const path = issue.path.join('.');
         setError(path as unknown as keyof Leaderboard, {
-          type: "manual",
+          type: 'manual',
           message: issue.message,
         });
       });
@@ -109,14 +111,13 @@ export const LeaderboardForm = ({ mode }: Props) => {
     try {
       if (mode === FormMode.EDIT && id) {
         await updateLeaderboard({ id, data: formData });
-        console.log("Successfully updated!");
       } else {
         await createLeaderboard(formData);
-        console.log("Successfully created!");
       }
-      navigate("/leaderboard");
+      navigate('/leaderboard');
     } catch (error) {
       console.error(error);
+      setIsSubmitting(false);
     }
   };
 
@@ -126,7 +127,7 @@ export const LeaderboardForm = ({ mode }: Props) => {
     }
   }, [data, reset, mode]);
 
-  useUnsavedChanges(isDirty);
+  useUnsavedChanges(isDirty, isSubmitting);
 
   return (
     <StateHandler
@@ -143,23 +144,23 @@ export const LeaderboardForm = ({ mode }: Props) => {
             e.preventDefault();
             handleFormSubmit(getValues());
           }}
-          sx={{ maxWidth: 1000, margin: "0 auto", p: { xs: 2, md: 4 } }}
+          sx={{ maxWidth: 1000, margin: '0 auto', p: { xs: 2, md: 4 } }}
         >
-          <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+          <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
             <Button
-              onClick={() => navigate("/leaderboard")}
-              startIcon={<BackIcon sx={{ fontSize: "14px !important" }} />}
+              onClick={() => navigate('/leaderboard')}
+              startIcon={<BackIcon sx={{ fontSize: '14px !important' }} />}
               sx={{
-                color: "text.secondary",
-                textTransform: "none",
+                color: 'text.secondary',
+                textTransform: 'none',
                 p: 0,
                 fontWeight: 600,
-                fontSize: "0.95rem",
-                transition: "all 0.2s ease",
-                "&:hover": {
-                  color: "green",
-                  bgcolor: "transparent",
-                  transform: "translateX(-4px)",
+                fontSize: '0.95rem',
+                transition: 'all 0.2s ease',
+                '&:hover': {
+                  color: 'green',
+                  bgcolor: 'transparent',
+                  transform: 'translateX(-4px)',
                 },
               }}
             >
@@ -169,7 +170,7 @@ export const LeaderboardForm = ({ mode }: Props) => {
 
           <Card
             elevation={0}
-            sx={{ border: "1px solid #e0e0e0", borderRadius: 3 }}
+            sx={{ border: '1px solid #e0e0e0', borderRadius: 3 }}
           >
             <CardContent sx={{ p: 4 }}>
               <Stack
@@ -181,17 +182,17 @@ export const LeaderboardForm = ({ mode }: Props) => {
                 <Box>
                   <Typography
                     variant="h4"
-                    sx={{ color: "green", fontWeight: 700 }}
+                    sx={{ color: 'green', fontWeight: 700 }}
                   >
                     {mode === FormMode.EDIT
-                      ? "Edit Leaderboard"
-                      : "Create Leaderboard"}
+                      ? 'Edit Leaderboard'
+                      : 'Create Leaderboard'}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
                     Configure your competition details and rewards
                   </Typography>
                 </Box>
-                <SettingsIcon sx={{ color: "green", fontSize: 40 }} />
+                <SettingsIcon sx={{ color: 'green', fontSize: 40 }} />
               </Stack>
 
               <Grid container spacing={3}>
@@ -209,7 +210,7 @@ export const LeaderboardForm = ({ mode }: Props) => {
                         helperText={errors.title?.message}
                         onChange={(e) => {
                           field.onChange(e);
-                          if (errors.title) clearErrors("title");
+                          if (errors.title) clearErrors('title');
                         }}
                       />
                     )}
@@ -225,7 +226,7 @@ export const LeaderboardForm = ({ mode }: Props) => {
                         <InputLabel>Status</InputLabel>
                         <Select
                           {...field}
-                          value={field.value ?? ""}
+                          value={field.value ?? ''}
                           label="Status"
                           error={!!errors.status}
                         >
@@ -273,7 +274,7 @@ export const LeaderboardForm = ({ mode }: Props) => {
                         helperText={errors.startDate?.message}
                         onChange={(e) => {
                           field.onChange(e);
-                          if (errors.startDate) clearErrors("startDate");
+                          if (errors.startDate) clearErrors('startDate');
                         }}
                       />
                     )}
@@ -295,7 +296,7 @@ export const LeaderboardForm = ({ mode }: Props) => {
                         helperText={errors.endDate?.message}
                         onChange={(e) => {
                           field.onChange(e);
-                          if (errors.endDate) clearErrors("endDate");
+                          if (errors.endDate) clearErrors('endDate');
                         }}
                       />
                     )}
@@ -314,11 +315,11 @@ export const LeaderboardForm = ({ mode }: Props) => {
                         fullWidth
                         error={!!errors.maxParticipants}
                         helperText={errors.maxParticipants?.message}
-                        value={field.value ?? ""}
+                        value={field.value ?? ''}
                         onChange={(e) => {
                           field.onChange(e);
                           if (errors.maxParticipants)
-                            clearErrors("maxParticipants");
+                            clearErrors('maxParticipants');
                         }}
                       />
                     )}
@@ -334,7 +335,7 @@ export const LeaderboardForm = ({ mode }: Props) => {
                         <InputLabel>Scoring Type</InputLabel>
                         <Select
                           {...field}
-                          value={field.value ?? ""}
+                          value={field.value ?? ''}
                           label="Scoring Type"
                         >
                           <MenuItem value="">
@@ -381,7 +382,7 @@ export const LeaderboardForm = ({ mode }: Props) => {
                       <Typography
                         color="error"
                         variant="caption"
-                        sx={{ mb: 1, display: "block" }}
+                        sx={{ mb: 1, display: 'block' }}
                       >
                         {errors.prizes.message}
                       </Typography>
@@ -393,14 +394,14 @@ export const LeaderboardForm = ({ mode }: Props) => {
                       startIcon={<AddIcon />}
                       sx={{ borderRadius: 2 }}
                       onClick={() => {
-                        clearErrors("prizes");
+                        clearErrors('prizes');
                         append({
                           id: crypto.randomUUID(),
                           rank: fields.length + 1,
-                          name: "",
+                          name: '',
                           type: LeaderboardPrizeType.COINS,
                           amount: 0,
-                          imageUrl: "",
+                          imageUrl: '',
                         });
                       }}
                     >
@@ -416,10 +417,10 @@ export const LeaderboardForm = ({ mode }: Props) => {
                         sx={{
                           p: 3,
                           borderRadius: 2,
-                          bgcolor: "#fafafa",
-                          position: "relative",
-                          transition: "0.2s",
-                          "&:hover": { borderColor: "green" },
+                          bgcolor: '#fafafa',
+                          position: 'relative',
+                          transition: '0.2s',
+                          '&:hover': { borderColor: 'green' },
                         }}
                       >
                         <Box
@@ -430,7 +431,7 @@ export const LeaderboardForm = ({ mode }: Props) => {
                         >
                           <Typography
                             variant="subtitle2"
-                            sx={{ color: "green", fontWeight: 700 }}
+                            sx={{ color: 'green', fontWeight: 700 }}
                           >
                             REWARD POSITION #{index + 1}
                           </Typography>
@@ -439,8 +440,8 @@ export const LeaderboardForm = ({ mode }: Props) => {
                             size="small"
                             onClick={() => remove(index)}
                             sx={{
-                              bgcolor: "#fff",
-                              "&:hover": { bgcolor: "#fee" },
+                              bgcolor: '#fff',
+                              '&:hover': { bgcolor: '#fee' },
                             }}
                           >
                             <DeleteIcon fontSize="small" />
@@ -555,20 +556,20 @@ export const LeaderboardForm = ({ mode }: Props) => {
                                         sx={{
                                           width: 120,
                                           height: 120,
-                                          objectFit: "cover",
+                                          objectFit: 'cover',
                                           borderRadius: 1,
-                                          border: "1px solid #ccc",
+                                          border: '1px solid #ccc',
                                         }}
                                         onError={(e) => {
                                           e.currentTarget.style.display =
-                                            "none";
+                                            'none';
                                         }}
                                       />
                                       <Button
                                         variant="contained"
                                         color="error"
                                         sx={{ height: 40 }}
-                                        onClick={() => field.onChange("")}
+                                        onClick={() => field.onChange('')}
                                       >
                                         Remove Image
                                       </Button>
@@ -592,17 +593,17 @@ export const LeaderboardForm = ({ mode }: Props) => {
                     fullWidth
                     sx={{
                       py: 1.5,
-                      bgcolor: "green",
+                      bgcolor: 'green',
                       fontWeight: 700,
-                      fontSize: "1.1rem",
+                      fontSize: '1.1rem',
                       borderRadius: 2,
-                      "&:hover": { bgcolor: "#006400" },
+                      '&:hover': { bgcolor: '#006400' },
                     }}
                     disabled={isCreating || isUpdating}
                   >
                     {mode === FormMode.EDIT
-                      ? "Save Changes"
-                      : "Create Leaderboard"}
+                      ? 'Save Changes'
+                      : 'Create Leaderboard'}
                   </Button>
                 </Grid>
               </Grid>

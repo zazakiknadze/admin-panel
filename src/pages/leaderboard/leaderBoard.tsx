@@ -3,28 +3,29 @@ import {
   LeaderboardPrize,
   LeaderboardStatus,
 } from "@/interfaces/leaderboard";
-import { SortOrder } from "@/interfaces/shared";
 import { useLeaderboardData } from "@/pages/leaderboard/hooks/useLeaderboardData";
 import LeaderBoardTable from "@/pages/leaderboard/leaderBoardTable";
-import { handleChangePageFunction, handleSortFunction } from "@/utils/helpers";
 import { Add, FileDownload } from "@mui/icons-material";
 import { Box, Button, MenuItem, Select } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { exportCsv } from "@/utils/exportCsv";
+import { useTableControls } from "@/hooks/useTableControls";
 
 const LeaderBoard = () => {
   const navigate = useNavigate();
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
-  const [sortBy, setSortBy] = useState<string>("");
-  const [sortOrder, setSortOrder] = useState<SortOrder>(SortOrder.ASC);
+  const {
+    page,
+    rowsPerPage,
+    sortBy,
+    sortOrder,
+    handleSort,
+    handleChangePage,
+    handleChangeRowsPerPage,
+  } = useTableControls();
   const [statusFilter, setStatusFilter] = useState<LeaderboardStatus | "All">(
     "All",
   );
-
-  const handleSort = (columnId: string) => {
-    handleSortFunction(columnId, sortBy, setSortOrder, setSortBy);
-  };
 
   const { data, isLoading, error, refetch } = useLeaderboardData({
     _page: page + 1,
@@ -32,16 +33,6 @@ const LeaderBoard = () => {
     status: statusFilter === "All" ? undefined : statusFilter,
   });
 
-  const handleChangePage = (_: unknown, newPage: number) => {
-    handleChangePageFunction(_, newPage, setPage, setSortBy, setSortOrder);
-  };
-
-  const handleChangeRowsPerPage = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
-  };
 
   const rows = data?.data || [];
 
@@ -57,42 +48,34 @@ const LeaderBoard = () => {
   const statusFilterOptions = ["All", ...statusOptions];
 
   const handleExportCSV = () => {
-    const headers = [
-      "ID",
-      "Title",
-      "Status",
-      "Start Date",
-      "End Date",
-      "Participants",
-      "Created At",
-      "Updated At",
-      "Scoring Type",
-      "Prizes",
-    ].join(",");
-
-    const csvContent = rowsWithSortId
-      .map((r: Leaderboard) =>
-        [
-          r.id,
-          `"${r.title}"`,
-          r.status,
-          r.startDate,
-          r.endDate,
-          r.maxParticipants,
-          r.createdAt,
-          r.updatedAt,
-          r.scoringType,
-          r.prizes.map((p: LeaderboardPrize) => p.name).join(","),
-        ].join(","),
-      )
-      .join("\n");
-
-    const blob = new Blob([`${headers}\n${csvContent}`], { type: "text/csv" });
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `leaderboards_${new Date().toISOString().split("T")[0]}.csv`;
-    a.click();
+    exportCsv<Leaderboard & { sortId?: number }>({
+      filename: `leaderboards_${new Date().toISOString().split("T")[0]}.csv`,
+      headers: [
+        "ID",
+        "Title",
+        "Status",
+        "Start Date",
+        "End Date",
+        "Participants",
+        "Created At",
+        "Updated At",
+        "Scoring Type",
+        "Prizes",
+      ],
+      rows: rowsWithSortId,
+      getRowCells: (r) => [
+        r.id,
+        `"${r.title}"`,
+        r.status,
+        r.startDate,
+        r.endDate,
+        r.maxParticipants,
+        r.createdAt,
+        r.updatedAt,
+        r.scoringType,
+        r.prizes.map((p: LeaderboardPrize) => p.name).join(","),
+      ],
+    });
   };
 
   return (

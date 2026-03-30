@@ -1,4 +1,4 @@
-import { useForm, Controller, useFieldArray } from "react-hook-form";
+import { useForm, Controller, useFieldArray } from 'react-hook-form';
 import {
   TextField,
   Select,
@@ -15,27 +15,27 @@ import {
   Divider,
   IconButton,
   Stack,
-} from "@mui/material";
+} from '@mui/material';
 import {
   Delete as DeleteIcon,
   Add as AddIcon,
   EmojiEvents as TrophyIcon,
   Settings as SettingsIcon,
   ArrowBack as BackIcon,
-} from "@mui/icons-material";
-import { RafflePrizeType } from "@/interfaces/raffle";
-import { useEffect } from "react";
-import { FormMode } from "@/interfaces/shared";
-import { useNavigate, useParams } from "react-router-dom";
-import StateHandler from "@/components/stateHandler/stateHandler";
+} from '@mui/icons-material';
+import { RafflePrizeType } from '@/interfaces/raffle';
+import { useEffect, useState } from 'react';
+import { FormMode } from '@/interfaces/shared';
+import { useNavigate, useParams } from 'react-router-dom';
+import StateHandler from '@/components/stateHandler/stateHandler';
 import {
   useNewRowMutation,
   useUpdateRowMutation,
-} from "@/pages/raffle/hooks/useRowMutation";
-import { useRaffleDetails } from "@/pages/raffle/hooks/useRaffleDetails";
-import { Raffle, RaffleStatus } from "@/interfaces/raffle";
-import { raffleSchema } from "@/pages/raffle/validations/validationSchema";
-import { useUnsavedChanges } from "@/hooks/useUnsavedChanges";
+} from '@/pages/raffle/hooks/useRowMutation';
+import { useRaffleDetails } from '@/pages/raffle/hooks/useRaffleDetails';
+import { Raffle, RaffleStatus } from '@/interfaces/raffle';
+import { raffleSchema } from '@/pages/raffle/validations/validationSchema';
+import { useUnsavedChanges } from '@/hooks/useUnsavedChanges';
 
 interface Props {
   mode: FormMode;
@@ -60,41 +60,44 @@ export const RaffleForm = ({ mode }: Props) => {
     clearErrors,
     formState: { errors, isDirty },
   } = useForm<Raffle>({
-    mode: "onChange",
+    mode: 'onChange',
     defaultValues: {
-      id: "",
-      name: "",
-      description: "",
-      startDate: "",
-      endDate: "",
-      drawDate: "",
+      id: '',
+      name: '',
+      description: '',
+      startDate: '',
+      endDate: '',
+      drawDate: '',
       status: undefined,
       ticketPrice: undefined,
       maxTicketsPerUser: undefined,
       totalTicketLimit: null,
       prizes: [],
-      createdAt: "",
-      updatedAt: "",
+      createdAt: '',
+      updatedAt: '',
     },
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const { fields, append, remove } = useFieldArray({
     control,
-    name: "prizes",
+    name: 'prizes',
   });
 
   const prizeTypeOptions = Object.values(RafflePrizeType);
 
   const handleFormSubmit = async (formData: Raffle) => {
     clearErrors();
+    setIsSubmitting(true);
 
     const result = raffleSchema.safeParse(formData);
 
     if (!result.success) {
       result.error.issues.forEach((issue) => {
-        const path = issue.path.join(".");
+        const path = issue.path.join('.');
         setError(path as keyof Raffle, {
-          type: "manual",
+          type: 'manual',
           message: issue.message,
         });
       });
@@ -104,27 +107,28 @@ export const RaffleForm = ({ mode }: Props) => {
     try {
       if (mode === FormMode.EDIT && id) {
         await updateRaffle({ id, data: formData });
-        console.log("Successfully updated!");
+        console.log('Successfully updated!');
       } else {
         await createRaffle(formData);
-        console.log("Successfully created!");
+        console.log('Successfully created!');
       }
-      navigate("/raffle");
+      navigate('/raffle');
     } catch (error) {
       console.error(error);
+      setIsSubmitting(false);
     }
   };
 
   useEffect(() => {
     if (data?.status === RaffleStatus.DRAWN) {
-      navigate("/raffle");
+      navigate('/raffle');
     }
     if (mode === FormMode.EDIT && data) {
       reset(data);
     }
   }, [data, reset, mode]);
 
-  useUnsavedChanges(isDirty);
+  useUnsavedChanges(isDirty, isSubmitting);
 
   return (
     <StateHandler
@@ -141,23 +145,23 @@ export const RaffleForm = ({ mode }: Props) => {
             e.preventDefault();
             handleFormSubmit(getValues());
           }}
-          sx={{ maxWidth: 1000, margin: "0 auto", p: { xs: 2, md: 4 } }}
+          sx={{ maxWidth: 1000, margin: '0 auto', p: { xs: 2, md: 4 } }}
         >
-          <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+          <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
             <Button
-              onClick={() => navigate("/raffle")}
-              startIcon={<BackIcon sx={{ fontSize: "14px !important" }} />}
+              onClick={() => navigate('/raffle')}
+              startIcon={<BackIcon sx={{ fontSize: '14px !important' }} />}
               sx={{
-                color: "text.secondary",
-                textTransform: "none",
+                color: 'text.secondary',
+                textTransform: 'none',
                 p: 0,
                 fontWeight: 600,
-                fontSize: "0.95rem",
-                transition: "all 0.2s ease",
-                "&:hover": {
-                  color: "green",
-                  bgcolor: "transparent",
-                  transform: "translateX(-4px)",
+                fontSize: '0.95rem',
+                transition: 'all 0.2s ease',
+                '&:hover': {
+                  color: 'green',
+                  bgcolor: 'transparent',
+                  transform: 'translateX(-4px)',
                 },
               }}
             >
@@ -167,7 +171,7 @@ export const RaffleForm = ({ mode }: Props) => {
 
           <Card
             elevation={0}
-            sx={{ border: "1px solid #e0e0e0", borderRadius: 3 }}
+            sx={{ border: '1px solid #e0e0e0', borderRadius: 3 }}
           >
             <CardContent sx={{ p: 4 }}>
               <Stack
@@ -179,15 +183,15 @@ export const RaffleForm = ({ mode }: Props) => {
                 <Box>
                   <Typography
                     variant="h4"
-                    sx={{ color: "green", fontWeight: 700 }}
+                    sx={{ color: 'green', fontWeight: 700 }}
                   >
-                    {mode === FormMode.EDIT ? "Edit Raffle" : "Create Raffle"}
+                    {mode === FormMode.EDIT ? 'Edit Raffle' : 'Create Raffle'}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
                     Configure your raffle details and prizes
                   </Typography>
                 </Box>
-                <SettingsIcon sx={{ color: "green", fontSize: 40 }} />
+                <SettingsIcon sx={{ color: 'green', fontSize: 40 }} />
               </Stack>
 
               <Grid container spacing={3}>
@@ -205,7 +209,7 @@ export const RaffleForm = ({ mode }: Props) => {
                         helperText={errors.name?.message}
                         onChange={(e) => {
                           field.onChange(e);
-                          if (errors.name) clearErrors("name");
+                          if (errors.name) clearErrors('name');
                         }}
                       />
                     )}
@@ -222,7 +226,7 @@ export const RaffleForm = ({ mode }: Props) => {
                         <Select
                           {...field}
                           label="Status"
-                          value={field.value ?? ""}
+                          value={field.value ?? ''}
                           error={!!errors.status}
                         >
                           {Object.values(RaffleStatus).map((status) => (
@@ -269,7 +273,7 @@ export const RaffleForm = ({ mode }: Props) => {
                         helperText={errors.startDate?.message}
                         onChange={(e) => {
                           field.onChange(e);
-                          if (errors.startDate) clearErrors("startDate");
+                          if (errors.startDate) clearErrors('startDate');
                         }}
                       />
                     )}
@@ -291,7 +295,7 @@ export const RaffleForm = ({ mode }: Props) => {
                         helperText={errors.endDate?.message}
                         onChange={(e) => {
                           field.onChange(e);
-                          if (errors.endDate) clearErrors("endDate");
+                          if (errors.endDate) clearErrors('endDate');
                         }}
                       />
                     )}
@@ -313,7 +317,7 @@ export const RaffleForm = ({ mode }: Props) => {
                         helperText={errors.drawDate?.message}
                         onChange={(e) => {
                           field.onChange(e);
-                          if (errors.drawDate) clearErrors("drawDate");
+                          if (errors.drawDate) clearErrors('drawDate');
                         }}
                       />
                     )}
@@ -332,10 +336,10 @@ export const RaffleForm = ({ mode }: Props) => {
                         fullWidth
                         error={!!errors.ticketPrice}
                         helperText={errors.ticketPrice?.message}
-                        value={field.value ?? ""}
+                        value={field.value ?? ''}
                         onChange={(e) => {
                           field.onChange(e);
-                          if (errors.ticketPrice) clearErrors("ticketPrice");
+                          if (errors.ticketPrice) clearErrors('ticketPrice');
                         }}
                       />
                     )}
@@ -354,11 +358,11 @@ export const RaffleForm = ({ mode }: Props) => {
                         fullWidth
                         error={!!errors.maxTicketsPerUser}
                         helperText={errors.maxTicketsPerUser?.message}
-                        value={field.value ?? ""}
+                        value={field.value ?? ''}
                         onChange={(e) => {
                           field.onChange(e);
                           if (errors.maxTicketsPerUser)
-                            clearErrors("maxTicketsPerUser");
+                            clearErrors('maxTicketsPerUser');
                         }}
                       />
                     )}
@@ -374,7 +378,7 @@ export const RaffleForm = ({ mode }: Props) => {
                         {...field}
                         value={
                           field.value === null || field.value === undefined
-                            ? ""
+                            ? ''
                             : field.value
                         }
                         type="number"
@@ -385,7 +389,7 @@ export const RaffleForm = ({ mode }: Props) => {
                         onChange={(e) => {
                           const val = e.target.value;
 
-                          if (val === "") {
+                          if (val === '') {
                             field.onChange(null);
                           } else {
                             const numVal = Number(val);
@@ -393,7 +397,7 @@ export const RaffleForm = ({ mode }: Props) => {
                           }
 
                           if (errors.totalTicketLimit)
-                            clearErrors("totalTicketLimit");
+                            clearErrors('totalTicketLimit');
                         }}
                       />
                     )}
@@ -430,7 +434,7 @@ export const RaffleForm = ({ mode }: Props) => {
                       <Typography
                         color="error"
                         variant="caption"
-                        sx={{ mb: 1, display: "block" }}
+                        sx={{ mb: 1, display: 'block' }}
                       >
                         {errors.prizes.message}
                       </Typography>
@@ -442,14 +446,14 @@ export const RaffleForm = ({ mode }: Props) => {
                       startIcon={<AddIcon />}
                       sx={{ borderRadius: 2 }}
                       onClick={() => {
-                        clearErrors("prizes");
+                        clearErrors('prizes');
                         append({
                           id: crypto.randomUUID(),
-                          name: "",
+                          name: '',
                           type: RafflePrizeType.COINS,
                           amount: 0,
                           quantity: 0,
-                          imageUrl: "",
+                          imageUrl: '',
                         });
                       }}
                     >
@@ -465,10 +469,10 @@ export const RaffleForm = ({ mode }: Props) => {
                         sx={{
                           p: 3,
                           borderRadius: 2,
-                          bgcolor: "#fafafa",
-                          position: "relative",
-                          transition: "0.2s",
-                          "&:hover": { borderColor: "green" },
+                          bgcolor: '#fafafa',
+                          position: 'relative',
+                          transition: '0.2s',
+                          '&:hover': { borderColor: 'green' },
                         }}
                       >
                         <Box
@@ -479,7 +483,7 @@ export const RaffleForm = ({ mode }: Props) => {
                         >
                           <Typography
                             variant="subtitle2"
-                            sx={{ color: "green", fontWeight: 700 }}
+                            sx={{ color: 'green', fontWeight: 700 }}
                           >
                             REWARD POSITION #{index + 1}
                           </Typography>
@@ -488,8 +492,8 @@ export const RaffleForm = ({ mode }: Props) => {
                             size="small"
                             onClick={() => remove(index)}
                             sx={{
-                              bgcolor: "#fff",
-                              "&:hover": { bgcolor: "#fee" },
+                              bgcolor: '#fff',
+                              '&:hover': { bgcolor: '#fee' },
                             }}
                           >
                             <DeleteIcon fontSize="small" />
@@ -604,20 +608,20 @@ export const RaffleForm = ({ mode }: Props) => {
                                         sx={{
                                           width: 120,
                                           height: 120,
-                                          objectFit: "cover",
+                                          objectFit: 'cover',
                                           borderRadius: 1,
-                                          border: "1px solid #ccc",
+                                          border: '1px solid #ccc',
                                         }}
                                         onError={(e) => {
                                           e.currentTarget.style.display =
-                                            "none";
+                                            'none';
                                         }}
                                       />
                                       <Button
                                         variant="contained"
                                         color="error"
                                         sx={{ height: 40 }}
-                                        onClick={() => field.onChange("")}
+                                        onClick={() => field.onChange('')}
                                       >
                                         Remove Image
                                       </Button>
@@ -641,15 +645,15 @@ export const RaffleForm = ({ mode }: Props) => {
                     fullWidth
                     sx={{
                       py: 1.5,
-                      bgcolor: "green",
+                      bgcolor: 'green',
                       fontWeight: 700,
-                      fontSize: "1.1rem",
+                      fontSize: '1.1rem',
                       borderRadius: 2,
-                      "&:hover": { bgcolor: "#006400" },
+                      '&:hover': { bgcolor: '#006400' },
                     }}
                     disabled={isCreating || isUpdating}
                   >
-                    {mode === FormMode.EDIT ? "Save Changes" : "Create Raffle"}
+                    {mode === FormMode.EDIT ? 'Save Changes' : 'Create Raffle'}
                   </Button>
                 </Grid>
               </Grid>

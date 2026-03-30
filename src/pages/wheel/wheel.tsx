@@ -1,41 +1,31 @@
-import { SortOrder } from "@/interfaces/shared";
 import { Wheel, WheelSegment, WheelStatus } from "@/interfaces/wheel";
 import { useWheelData } from "@/pages/wheel/hooks/useWheelData";
 import WheelTable from "@/pages/wheel/wheelTable";
-import { handleChangePageFunction, handleSortFunction } from "@/utils/helpers";
 import { Add, FileDownload } from "@mui/icons-material";
 import { Box, Button, MenuItem, Select } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { exportCsv } from "@/utils/exportCsv";
+import { useTableControls } from "@/hooks/useTableControls";
 
 const Wheel = () => {
   const navigate = useNavigate();
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
-  const [sortBy, setSortBy] = useState<string>("");
-  const [sortOrder, setSortOrder] = useState<SortOrder>(SortOrder.ASC);
+  const {
+    page,
+    rowsPerPage,
+    sortBy,
+    sortOrder,
+    handleSort,
+    handleChangePage,
+    handleChangeRowsPerPage,
+  } = useTableControls();
   const [statusFilter, setStatusFilter] = useState<WheelStatus | "All">("All");
-
-  const handleSort = (columnId: string) => {
-    handleSortFunction(columnId, sortBy, setSortOrder, setSortBy);
-  };
 
   const { data, isLoading, error, refetch } = useWheelData({
     _page: page + 1,
     _limit: rowsPerPage,
     status: statusFilter === "All" ? undefined : statusFilter,
   });
-
-  const handleChangePage = (_: unknown, newPage: number) => {
-    handleChangePageFunction(_, newPage, setPage, setSortBy, setSortOrder);
-  };
-
-  const handleChangeRowsPerPage = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
-  };
 
   const rows = data?.data || [];
 
@@ -51,44 +41,36 @@ const Wheel = () => {
   const statusFilterOptions = ["All", ...statusOptions];
 
   const handleExportCSV = () => {
-    const headers = [
-      "ID",
-      "Name",
-      "Description",
-      "Status",
-      "Max Spins Per User",
-      "Spin Cost",
-      "Background Color",
-      "Border Color",
-      "Created At",
-      "Updated At",
-      "Segments",
-    ].join(",");
-
-    const csvContent = rowsWithSortId
-      .map((r: Wheel) =>
-        [
-          r.id,
-          `"${r.name}"`,
-          r.description,
-          r.status,
-          r.maxSpinsPerUser,
-          r.spinCost,
-          r.backgroundColor,
-          r.borderColor,
-          r.createdAt,
-          r.updatedAt,
-          r.segments.map((p: WheelSegment) => p.label).join(","),
-        ].join(","),
-      )
-      .join("\n");
-
-    const blob = new Blob([`${headers}\n${csvContent}`], { type: "text/csv" });
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `wheels_${new Date().toISOString().split("T")[0]}.csv`;
-    a.click();
+    exportCsv<Wheel>({
+      filename: `wheels_${new Date().toISOString().split("T")[0]}.csv`,
+      headers: [
+        "ID",
+        "Name",
+        "Description",
+        "Status",
+        "Max Spins Per User",
+        "Spin Cost",
+        "Background Color",
+        "Border Color",
+        "Created At",
+        "Updated At",
+        "Segments",
+      ],
+      rows: rowsWithSortId,
+      getRowCells: (r) => [
+        r.id,
+        `"${r.name}"`,
+        r.description,
+        r.status,
+        r.maxSpinsPerUser,
+        r.spinCost,
+        r.backgroundColor,
+        r.borderColor,
+        r.createdAt,
+        r.updatedAt,
+        r.segments.map((p: WheelSegment) => p.label).join(","),
+      ],
+    });
   };
 
   return (

@@ -1,15 +1,16 @@
 import { IRoute, SortOrder } from "@/interfaces/shared";
 import { LeaderboardParams } from "@/services/api/leaderboard";
+import type { SetStateAction } from "react";
 
 export const cleanParams = (params: LeaderboardParams) =>
   Object.fromEntries(
-    Object.entries(params).filter(([_, v]) => v !== "" && v !== undefined),
+    Object.entries(params).filter(([, v]) => v !== "" && v !== undefined),
   );
 
 export const handleSortFunction = (
   columnId: string,
   sortBy: string,
-  setSortOrder: (value: React.SetStateAction<SortOrder>) => void,
+  setSortOrder: (value: SetStateAction<SortOrder>) => void,
   setSortBy: (column: string) => void,
 ) => {
   if (sortBy === columnId) {
@@ -23,12 +24,13 @@ export const handleSortFunction = (
 };
 
 export const handleChangePageFunction = (
-  _: unknown,
+  event: unknown,
   newPage: number,
   setPage: (page: number) => void,
   setSortBy: (column: string) => void,
   setSortOrder: (order: SortOrder) => void,
 ) => {
+  void event;
   setPage(newPage);
   setSortBy("");
   setSortOrder(SortOrder.ASC);

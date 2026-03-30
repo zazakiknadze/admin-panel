@@ -1,26 +1,28 @@
 import { Raffle, RafflePrize, RaffleStatus } from "@/interfaces/raffle";
-import { SortOrder } from "@/interfaces/shared";
 import { useRaffleData } from "@/pages/raffle/hooks/useRaffleData";
 import RaffleTable from "@/pages/raffle/raffleTable";
-import { handleChangePageFunction, handleSortFunction } from "@/utils/helpers";
 import { Add, FileDownload } from "@mui/icons-material";
 import { Box, Button, MenuItem, Select, Stack, TextField } from "@mui/material";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { exportCsv } from "@/utils/exportCsv";
+import { useTableControls } from "@/hooks/useTableControls";
+import { useState } from "react";
 
 const Raffle = () => {
   const navigate = useNavigate();
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
-  const [sortBy, setSortBy] = useState<string>("");
-  const [sortOrder, setSortOrder] = useState<SortOrder>(SortOrder.ASC);
+  const {
+    page,
+    rowsPerPage,
+    sortBy,
+    sortOrder,
+    setPage,
+    handleSort,
+    handleChangePage,
+    handleChangeRowsPerPage,
+  } = useTableControls();
   const [statusFilter, setStatusFilter] = useState<RaffleStatus | "All">("All");
   const [startDateFilter, setStartDateFilter] = useState<string>("");
   const [endDateFilter, setEndDateFilter] = useState<string>("");
-
-  const handleSort = (columnId: string) => {
-    handleSortFunction(columnId, sortBy, setSortOrder, setSortBy);
-  };
 
   const { data, isLoading, error, refetch } = useRaffleData({
     _page: page + 1,
@@ -37,17 +39,6 @@ const Raffle = () => {
     setPage(0);
   };
 
-  const handleChangePage = (_: unknown, newPage: number) => {
-    handleChangePageFunction(_, newPage, setPage, setSortBy, setSortOrder);
-  };
-
-  const handleChangeRowsPerPage = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
-  };
-
   const rows = data?.data || [];
 
   const rowsWithSortId = rows.map((rows: Raffle) => ({
@@ -58,46 +49,38 @@ const Raffle = () => {
   const total = data?.total || 0;
 
   const handleExportCSV = () => {
-    const headers = [
-      "ID",
-      "Name",
-      "Status",
-      "Start Date",
-      "End Date",
-      "Draw Date",
-      "Created At",
-      "Updated At",
-      "Ticket Price",
-      "Max Tickets Per User",
-      "Total Ticket Limit",
-      "Prizes",
-    ].join(",");
-
-    const csvContent = rowsWithSortId
-      .map((r: Raffle) =>
-        [
-          r.id,
-          `"${r.name}"`,
-          r.status,
-          r.startDate,
-          r.endDate,
-          r.drawDate,
-          r.createdAt,
-          r.updatedAt,
-          r.ticketPrice,
-          r.maxTicketsPerUser,
-          r.totalTicketLimit,
-          r.prizes.map((p: RafflePrize) => p.name).join(","),
-        ].join(","),
-      )
-      .join("\n");
-
-    const blob = new Blob([`${headers}\n${csvContent}`], { type: "text/csv" });
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `raffles_${new Date().toISOString().split("T")[0]}.csv`;
-    a.click();
+    exportCsv<Raffle & { sortId?: number }>({
+      filename: `raffles_${new Date().toISOString().split("T")[0]}.csv`,
+      headers: [
+        "ID",
+        "Name",
+        "Status",
+        "Start Date",
+        "End Date",
+        "Draw Date",
+        "Created At",
+        "Updated At",
+        "Ticket Price",
+        "Max Tickets Per User",
+        "Total Ticket Limit",
+        "Prizes",
+      ],
+      rows: rowsWithSortId,
+      getRowCells: (r) => [
+        r.id,
+        `"${r.name}"`,
+        r.status,
+        r.startDate,
+        r.endDate,
+        r.drawDate,
+        r.createdAt,
+        r.updatedAt,
+        r.ticketPrice,
+        r.maxTicketsPerUser,
+        r.totalTicketLimit as unknown as string,
+        r.prizes.map((p: RafflePrize) => p.name).join(","),
+      ],
+    });
   };
 
   return (

@@ -5,7 +5,6 @@ import {
   Typography,
   Box,
   Drawer,
-  CssBaseline,
 } from "@mui/material";
 import Sidebar from "@/components/sidebar/sidebar";
 import BreadcrumbNav from "@/components/breadcrumbs/breadcrumbs";
@@ -15,8 +14,6 @@ const drawerWidth = 240;
 const Layout = () => {
   return (
     <Box sx={{ display: "flex", height: "100%", pt: 8 }}>
-      <CssBaseline />
-
       <AppBar
         position="fixed"
         sx={{
