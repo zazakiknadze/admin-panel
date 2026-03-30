@@ -160,7 +160,7 @@ Prerequisites:
 
 1. Install dependencies:
    - `npm install`
-2. Install dependencies:
+2. Create .env from .env.example:
    - `cp .env.example .env`
 3. Start the mock API (json-server) in a terminal:
    - `npm run server`
